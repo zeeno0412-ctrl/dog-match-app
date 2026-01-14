@@ -16,9 +16,9 @@ AI 기반 유기견 매칭 서비스 - 댕칼코마니
 
 > **"평가하지 않고, 연결합니다 (Not Judging, Just Matching)"**
 
-<img width="515" height="792" alt="image" src="https://github.com/user-attachments/assets/10ef8ac1-71d7-4d80-96dc-f1b848c0c6ed" />
-<img width="571" height="786" alt="image" src="https://github.com/user-attachments/assets/53dad18c-1dcd-4a43-909e-8a4e9a0e8293" />
-<img width="671" height="807" alt="image" src="https://github.com/user-attachments/assets/09542178-1fbe-4c8e-84b9-b654a6d5b674" />
+<img width="550" height="550" alt="image" src="https://github.com/user-attachments/assets/10ef8ac1-71d7-4d80-96dc-f1b848c0c6ed" />
+<img width="550" height="550" alt="image" src="https://github.com/user-attachments/assets/53dad18c-1dcd-4a43-909e-8a4e9a0e8293" />
+<img width="550" height="550" alt="image" src="https://github.com/user-attachments/assets/09542178-1fbe-4c8e-84b9-b654a6d5b674" />
 
 ---
 
