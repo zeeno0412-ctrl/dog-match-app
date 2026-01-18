@@ -46,25 +46,39 @@ for dog in dogs_data:
 all_dog_tags = list(set(all_dog_tags))
 
 # ==========================================
-# 2. 스타일링 (CSS)
-# ==========================================
-# ==========================================
-# 2. 스타일링 (CSS)
+# 2. 스타일링 (CSS) - 다크모드 완벽 대응
 # ==========================================
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
         
+        /* [핵심 1] 배경색 강제 고정 */
         .stApp {
-            background: linear-gradient(180deg, #F1F8E9 0%, #DCEDC8 100%);
+            background: linear-gradient(180deg, #F1F8E9 0%, #DCEDC8 100%) !important;
         }
-        * { font-family: 'Jua', sans-serif !important; }
+
+        /* [핵심 2] 모든 글자색을 진한색으로 강제 고정 (다크모드에서도 흰색 글씨 금지) */
+        * { 
+            font-family: 'Jua', sans-serif !important; 
+            color: #333333 !important; /* 기본 글자: 진한 회색 */
+        }
+        
+        /* 제목 및 강조 글씨 색상 고정 */
+        h1, h2, h3, .main-title {
+            color: #2E7D32 !important; /* 진한 녹색 */
+            text-shadow: 2px 2px 0px #fff;
+        }
+        
+        /* 본문, 라벨, 리스트 등 모든 텍스트 강제 녹색/검정 */
+        p, div, span, label, li, [data-testid="stMarkdownContainer"] p {
+            color: #1B5E20 !important; /* 진한 쑥색 */
+        }
+
+        /* ------------------------------------------------ */
+        /* [기존 유지] 불필요한 텍스트 숨기기 및 UI 정리 */
+        /* ------------------------------------------------ */
         
         /* 이상한 key 텍스트 숨기기 */
-        div[data-testid="stMarkdownContainer"] p {
-            display: block !important;
-        }
-        
         div[data-testid="stMarkdownContainer"] p[style*="key="] {
             display: none !important;
         }
@@ -78,59 +92,72 @@ st.markdown("""
         [data-testid="stFileUploader"] label {
             font-size: 0 !important;
         }
-        
         [data-testid="stFileUploader"] label::after {
             content: "파일 선택";
             font-size: 1rem !important;
+            color: #1B5E20 !important;
         }
         
-        .main-title {
-            color: #2E7D32; text-align: center; font-size: 3.5em; 
-            margin-bottom: 10px; text-shadow: 2px 2px 0px #fff;
-        }
-        
-        /* 박스 스타일 */
+        /* ------------------------------------------------ */
+        /* 박스 및 버튼 스타일 */
+        /* ------------------------------------------------ */
+
+        /* 박스 스타일 (배경을 더 불투명하게 해서 가독성 확보) */
         .content-box {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95) !important;
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         /* 소개글 스타일 */
-        .intro-text-main { font-size: 1.4em; color: #1B5E20; font-weight: bold; margin-bottom: 10px; text-align: center; }
-        .intro-text-sub { font-size: 1.1em; color: #555; line-height: 1.6; text-align: center; }
+        .intro-text-main { 
+            font-size: 1.4em; 
+            color: #1B5E20 !important; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+            text-align: center; 
+        }
+        .intro-text-sub { 
+            font-size: 1.1em; 
+            color: #333333 !important; 
+            line-height: 1.6; 
+            text-align: center; 
+        }
         
         /* 프로세스 안내 스타일 */
         .process-container {
             display: flex; justify-content: space-around; align-items: center;
-            background-color: #E8F5E9; border-radius: 10px; padding: 15px; margin: 20px 0;
+            background-color: #E8F5E9 !important; 
+            border-radius: 10px; padding: 15px; margin: 20px 0;
         }
-        .process-item { text-align: center; font-size: 1.1em; color: #33691E; }
-        .process-arrow { font-size: 1.5em; color: #ccc; }
+        .process-item { text-align: center; font-size: 1.1em; color: #33691E !important; }
+        .process-arrow { font-size: 1.5em; color: #ccc !important; }
 
         /* 비구협 소개 박스 */
         .org-box {
             border-left: 5px solid #FF9800;
-            background-color: #FFF3E0;
+            background-color: #FFF3E0 !important;
             padding: 15px;
             border-radius: 5px;
             margin-top: 20px;
             font-size: 1.0em;
-            color: #E65100;
+            color: #E65100 !important;
         }
 
         /* 버튼 스타일 */
         .stButton>button {
             width: 100%; border-radius: 20px; height: 55px;
-            background-color: #EF6C00; color: white; font-size: 1.2em; border: none;
+            background-color: #EF6C00 !important; 
+            color: white !important; /* 버튼 글씨는 흰색 유지 */
+            font-size: 1.2em; border: none;
             box-shadow: 0 4px 0 #E65100; margin-top: 10px;
         }
         .stButton>button:active { transform: translateY(4px); box-shadow: none; }
         
         .step-indicator {
-            text-align: center; color: white; margin-bottom: 20px;
+            text-align: center; color: white !important; 
             background-color: #558B2F; padding: 8px 15px; border-radius: 20px; display: inline-block;
         }
     </style>
@@ -644,4 +671,5 @@ st.markdown("""
 <div style='text-align: center; margin-top: 50px; padding: 20px; color: #555; border-top: 1px solid #ddd;'>
     <span style='font-size: 1.1em; font-weight: bold;'>© 2025 비글구조네트워크 | 사지말고 입양하세요 💚</span>
 </div>
+
 """, unsafe_allow_html=True)
